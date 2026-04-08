@@ -1,0 +1,96 @@
+# Predictive Maintenance Assistant
+
+A Python tool to **explore, search, and understand machine sensor data** for predictive maintenance. This assistant converts sensor data into human-readable text, creates semantic embeddings, and allows natural language queries over past machine events using FAISS and optional OpenAI integration.
+
+---
+
+## Features
+
+* Converts CSV sensor data into readable text.
+* Generates embeddings using **SentenceTransformer**.
+* Stores embeddings in **FAISS vector index** for fast similarity search.
+* Natural language querying over historical machine events.
+* Optional **OpenAI LLM integration** for detailed explanations.
+* Helps maintenance teams identify patterns and understand failures.
+
+---
+
+## Installation
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/ManbSingh/ai-labs.git
+cd ai-labs
+```
+
+2. **Create a virtual environment (recommended):**
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+```
+
+3. **Install dependencies:**
+
+```bash
+pip install --upgrade pip
+pip install pandas numpy faiss-cpu sentence-transformers openai
+```
+
+> **Optional:** If you have a GPU and want faster embeddings, install `faiss-gpu` instead of `faiss-cpu`.
+
+---
+
+## Usage
+
+1. Place your machine sensor CSV file in the project folder (default: `manufacturing_sensors.csv`).
+2. Run the script:
+
+```bash
+python predictive_maintenance_assistant.py
+```
+
+3. Follow the prompts to query past machine events in natural language.
+
+---
+
+## Configuration
+
+* **CSV_PATH** – Path to your CSV sensor data.
+* **INDEX_FILE** – FAISS index filename.
+* **DOC_FILE** – Pickle file for storing documents.
+* **USE_OPENAI** – Set `True` to enable OpenAI LLM answers.
+
+---
+
+## Example
+
+```text
+User query: "Show me cases with high vibration before failure"
+Assistant: [Displays similar historical machine events]
+Optional OpenAI summary: "Machines 5 and 12 experienced high vibration leading to failures…"
+```
+
+---
+
+## Requirements
+
+* Python 3.8+
+* pandas
+* numpy
+* faiss-cpu (or faiss-gpu)
+* sentence-transformers
+* openai (if USE_OPENAI=True)
+
+---
+
+## Workflow Diagram
+
+
+The workflow: 
+
+CSV sensor data -> Text Conversion -> Embeddings (SentenceTransformer) -> FAISS Index -> User Query -> Optional OpenAI LLM Answer.
+
+---
